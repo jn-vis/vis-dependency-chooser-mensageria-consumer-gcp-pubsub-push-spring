@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ccp.decorators.CcpJsonRepresentation;
 import com.ccp.decorators.CcpStringDecorator;
 import com.ccp.dependency.injection.CcpDependencyInjection;
-import com.ccp.exceptions.process.CcpAsyncProcess;
+import com.ccp.exceptions.process.CcpAsyncTask;
 import com.ccp.implementations.db.bulk.elasticsearch.CcpElasticSerchDbBulk;
 import com.ccp.implementations.db.dao.elasticsearch.CcpElasticSearchDao;
 import com.ccp.implementations.db.query.elasticsearch.CcpElasticSearchQueryExecutor;
@@ -62,14 +62,14 @@ public class VisGcpPubSubPushApplicationStarter {
 		CcpJsonRepresentation json = new CcpJsonRepresentation(str);
 		JnEntityAsyncTask entity = new JnEntityAsyncTask();
 		JnAsyncBusinessNotifyError jnAsyncBusinessNotifyError = new JnAsyncBusinessNotifyError();
-		CcpAsyncProcess.executeProcess(topic, json, entity, jnAsyncBusinessNotifyError);
+		CcpAsyncTask.executeProcess(topic, json, entity, jnAsyncBusinessNotifyError);
 	}
 
 	@PostMapping("/testing")
 	public void onReceiveMessageTesting(@PathVariable("topic") String topic, @RequestBody Map<String, Object> json) {
 		CcpJsonRepresentation md = new CcpJsonRepresentation(json);
 		JnAsyncBusinessNotifyError jnAsyncBusinessNotifyError = new JnAsyncBusinessNotifyError();
-		CcpAsyncProcess.executeProcess(topic, md, jnAsyncBusinessNotifyError);
+		CcpAsyncTask.executeProcess(topic, md, jnAsyncBusinessNotifyError);
 	}
 
 }
