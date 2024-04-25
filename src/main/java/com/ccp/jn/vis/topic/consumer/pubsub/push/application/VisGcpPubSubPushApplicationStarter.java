@@ -60,9 +60,8 @@ public class VisGcpPubSubPushApplicationStarter {
 		String data = internalMap.getAsString("data");
 		String str = new CcpStringDecorator(data).text().asBase64();
 		CcpJsonRepresentation json = new CcpJsonRepresentation(str);
-		JnEntityAsyncTask entity = new JnEntityAsyncTask();
 		JnAsyncBusinessNotifyError jnAsyncBusinessNotifyError = new JnAsyncBusinessNotifyError();
-		CcpAsyncTask.executeProcess(topic, json, entity, jnAsyncBusinessNotifyError);
+		CcpAsyncTask.executeProcess(topic, json, JnEntityAsyncTask.INSTANCE, jnAsyncBusinessNotifyError);
 	}
 
 	@PostMapping("/testing")
