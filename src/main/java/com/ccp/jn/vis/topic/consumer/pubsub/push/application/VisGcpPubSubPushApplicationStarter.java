@@ -27,8 +27,8 @@ import com.ccp.implementations.file.bucket.gcp.CcpGcpFileBucket;
 import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
 import com.ccp.implementations.instant.messenger.telegram.CcpTelegramInstantMessenger;
 import com.ccp.implementations.json.gson.CcpGsonJsonHandler;
-import com.ccp.jn.async.business.JnAsyncBusinessNotifyError;
-import com.ccp.jn.vis.async.business.factory.CcpVisAsyncBusinessFactory;
+import com.ccp.jn.async.business.support.JnAsyncBusinessNotifyError;
+import com.ccp.vis.async.business.factory.CcpVisAsyncBusinessFactory;
 import com.jn.commons.entities.JnEntityAsyncTask;
 
 @EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
@@ -60,15 +60,13 @@ public class VisGcpPubSubPushApplicationStarter {
 		String data = internalMap.getAsString("data");
 		String str = new CcpStringDecorator(data).text().asBase64();
 		CcpJsonRepresentation json = new CcpJsonRepresentation(str);
-		JnAsyncBusinessNotifyError jnAsyncBusinessNotifyError = new JnAsyncBusinessNotifyError();
-		CcpAsyncTask.executeProcess(topic, json, JnEntityAsyncTask.INSTANCE, jnAsyncBusinessNotifyError);
+		CcpAsyncTask.executeProcess(topic, json, JnEntityAsyncTask.INSTANCE, JnAsyncBusinessNotifyError.INSTANCE);
 	}
 
 	@PostMapping("/testing")
 	public void onReceiveMessageTesting(@PathVariable("topic") String topic, @RequestBody Map<String, Object> json) {
 		CcpJsonRepresentation md = new CcpJsonRepresentation(json);
-		JnAsyncBusinessNotifyError jnAsyncBusinessNotifyError = new JnAsyncBusinessNotifyError();
-		CcpAsyncTask.executeProcess(topic, md, jnAsyncBusinessNotifyError);
+		CcpAsyncTask.executeProcess(topic, md, JnAsyncBusinessNotifyError.INSTANCE);
 	}
 
 }
