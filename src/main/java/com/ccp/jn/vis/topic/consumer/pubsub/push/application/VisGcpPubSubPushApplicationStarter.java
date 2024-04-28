@@ -58,7 +58,7 @@ public class VisGcpPubSubPushApplicationStarter {
 		CcpJsonRepresentation ccpMapDecorator = new CcpJsonRepresentation(body);
 		CcpJsonRepresentation internalMap = ccpMapDecorator.getInnerJson("message");
 		String data = internalMap.getAsString("data");
-		String str = new CcpStringDecorator(data).text().asBase64();
+		String str = new CcpStringDecorator(data).text().asBase64().content;
 		CcpJsonRepresentation json = new CcpJsonRepresentation(str);
 		CcpAsyncTask.executeProcess(topic, json, JnEntityAsyncTask.INSTANCE, JnAsyncBusinessNotifyError.INSTANCE);
 	}
