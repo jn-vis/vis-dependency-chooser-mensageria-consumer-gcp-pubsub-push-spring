@@ -22,6 +22,6 @@ public class Teste {
 				new CcpElasticSerchDbBulk());
 		CcpJsonRepresentation put = CcpConstants.EMPTY_JSON.put(JnEntityEmailParametersToSend.Fields.templateId.name(), "teste");
 		List<CcpJsonRepresentation> asList = Arrays.asList(put);
-		JnAsyncCommitAndAudit.INSTANCE.executeBulk(asList, CcpEntityOperationType.create, JnEntityEmailParametersToSend.INSTANCE);
+		JnAsyncCommitAndAudit.INSTANCE.executeBulk(asList, CcpEntityOperationType.create, JnEntityEmailParametersToSend.ENTITY);
 	}
 }

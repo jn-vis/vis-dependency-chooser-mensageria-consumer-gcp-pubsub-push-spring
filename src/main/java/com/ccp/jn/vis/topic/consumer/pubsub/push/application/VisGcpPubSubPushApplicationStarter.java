@@ -62,13 +62,13 @@ public class VisGcpPubSubPushApplicationStarter {
 		String data = internalMap.getAsString("data");
 		String str = new CcpStringDecorator(data).text().asBase64().content;
 		CcpJsonRepresentation json = new CcpJsonRepresentation(str);
-		JnAsyncMensageriaSender.INSTANCE.executeProcesss(JnEntityAsyncTask.INSTANCE, topic, json, JnAsyncBusinessNotifyError.INSTANCE);
+		JnAsyncMensageriaSender.INSTANCE.executeProcesss(JnEntityAsyncTask.ENTITY, topic, json, JnAsyncBusinessNotifyError.INSTANCE);
 	}
 
 	@PostMapping("/testing")
 	public void onReceiveMessageTesting(@PathVariable("topic") String topic, @RequestBody Map<String, Object> json) {
 		CcpJsonRepresentation md = new CcpJsonRepresentation(json);
-		JnAsyncMensageriaSender.INSTANCE.executeProcesss(JnEntityAsyncTask.INSTANCE, topic, md, JnAsyncBusinessNotifyError.INSTANCE);
+		JnAsyncMensageriaSender.INSTANCE.executeProcesss(JnEntityAsyncTask.ENTITY, topic, md, JnAsyncBusinessNotifyError.INSTANCE);
 	}
 
 }
