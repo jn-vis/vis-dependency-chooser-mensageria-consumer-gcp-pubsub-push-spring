@@ -27,7 +27,7 @@ import com.ccp.implementations.http.apache.mime.CcpApacheMimeHttp;
 import com.ccp.implementations.instant.messenger.telegram.CcpTelegramInstantMessenger;
 import com.ccp.implementations.json.gson.CcpGsonJsonHandler;
 import com.ccp.implementations.text.extractor.apache.tika.CcpApacheTikaTextExtractor;
-import com.jn.business.JnBusinessNotifyError;
+import com.jn.business.commons.JnBusinessNotifyError;
 import com.jn.entities.JnEntityAsyncTask;
 import com.jn.mensageria.JnMensageriaReceiver;
 
